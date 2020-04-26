@@ -1,7 +1,7 @@
 body {
-  font: 12px sans-serif;
   text-align: center;
   margin: 20px;
+  font-family: 'Roboto', sans-serif;
 }
 .iframe_window {
   padding: 0px;
@@ -27,12 +27,65 @@ button {
 input {
   border: none;
   outline: none;
-  padding: 8px;
 }
 .left_panel--panelContainer--1OR1n {
   background-color: #000!important;
 }
-input:hover { box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1); }
-button:focus { box-shadow: inset 0 0 0 2px #18A0FB; }
-#create:focus { box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.3); }
-input:focus { box-shadow: inset 0 0 0 2px #18A0FB; }
+input:hover {
+}
+button:focus {
+  outline: none;
+}
+#create:focus {  }
+input:focus {
+  outline: none;
+}
+
+.airtable__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+.airma__logo {
+  align-self: flex-start;
+  padding: 0px;
+  width: 100%;
+  text-align: center;
+  margin: 0px;
+}
+.airma__logo img {
+  width: 100px;
+  position: relative;
+  display: inline-block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.airtable__container-fields-inner {
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  width: 350px;
+  height: 300px;
+  text-align: left;
+}
+input.input__field {
+  display: block;
+  width: 100%;
+  border: solid 1px #B154F9;
+  padding: 10px;
+  color: #151515;
+  margin: 5px 0 5px 0;
+}
+input.input__submit {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #ED2AA9;
+  padding: 10px;
+  color: #FBF5F5;
+  font-weight: bold;
+  margin: 5px 0 5px 0;
+  cursor: pointer;
+}

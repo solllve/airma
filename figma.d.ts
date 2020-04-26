@@ -4,6 +4,7 @@ declare const __html__: string
 declare module '*.png'
 declare module '*.gif'
 declare module '*.jpg'
+declare module '*.svg'
 interface PluginAPI {
   readonly apiVersion: "1.0.0"
   readonly command: string
