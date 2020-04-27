@@ -4,9 +4,10 @@ export function praiseCrom() {
     showDoom: true
   }
 }
-export function getAirtable() {
+
+export function getAirtable(apiKey) {
   return {
-    type: "GET_AIRTABLE",
-    showAirtable: true
+    type: "GET_API",
+    airtableApi: apiKey
   }
 }

@@ -2,19 +2,24 @@ import {createStore} from "redux"
 
 const reducer = (state={
     showDoom: true,
-    airTable: 'test'
+    airtableApi: ''
   }, action) => {
+
   switch(action.type) {
+
     case "PRAISE_CROM": {
       return {
         showDoom: action.showDoom
       }
     }
-    case "GET_AIRTABLE": {
+
+    case "GET_API": {
       return {
-        airTableData: action.airTable
+        ...state,
+        airtableApi: action.airtableApi
       }
     }
+
   }
   return state
 }

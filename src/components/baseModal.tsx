@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import {connect,useSelector, useDispatch} from 'react-redux'
-import {praiseCrom} from "../store/actions"
+
+import {getAirtable} from "../store/actions"
+import store from '../store'
+
 import Iframe from 'react-iframe'
 import AirmaLogo from '../assets/airma-logo.svg'
 import '../ui.css'
@@ -9,6 +12,14 @@ class BaseModal extends Component {
 
   componentDidMount() {
 
+
+  }
+
+  connectToAirtable = () => {
+    store.dispatch({
+      type: 'GET_API',
+      airtableApi: 'keyxu9imGgjUCsm5p'
+    })
     var Airtable = require('airtable');
 
     Airtable.configure({
@@ -28,11 +39,7 @@ class BaseModal extends Component {
     }, function done(err) {
         if (err) { console.error(err); return; }
     });
-
-  }
-
-  connectToAirtable = () => {
-    console.log('Click happened');
+    console.log(store.getState())
   }
 
   render() {

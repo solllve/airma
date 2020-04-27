@@ -13,15 +13,13 @@ class App extends React.Component {
     //onmessage = (event) => {
     //  console.log(event.data.pluginMessage)
     //}
-    const getit = store.getState()
-    const showDoom = getit.showDoom
-    if (showDoom) {
+    //const getit = store.getState()
+    //const showDoom = getit.showDoom
       return (
         <div>
           <BaseModal />
         </div>
       )
-    }
   }
 }
 
