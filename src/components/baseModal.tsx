@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 import {connect,useSelector, useDispatch} from 'react-redux'
 
-import {getAirtable} from "../store/actions"
-import store from '../store'
+import {
+  getAirtableApi,
+  getAirtableBaseId,
+  getAirtableTableName
+} from "../store/actions"
 
+import store from '../store'
 import Iframe from 'react-iframe'
 import AirmaLogo from '../assets/airma-logo.svg'
 import '../ui.css'
@@ -12,14 +16,10 @@ class BaseModal extends Component {
 
   componentDidMount() {
 
-
   }
 
   connectToAirtable = () => {
-    store.dispatch({
-      type: 'GET_API',
-      airtableApi: 'keyxu9imGgjUCsm5p'
-    })
+
     var Airtable = require('airtable');
 
     Airtable.configure({
@@ -42,6 +42,22 @@ class BaseModal extends Component {
     console.log(store.getState())
   }
 
+  apiKeyValue(event) {
+    console.log(event.target.value)
+    store.dispatch(getAirtableApi(event.target.value))
+  }
+
+  baseIdValue(event) {
+    console.log(event.target.value)
+    store.dispatch(getAirtableBaseId(event.target.value))
+  }
+
+  tableNameValue(event) {
+    console.log(event.target.value)
+    store.dispatch(getAirtableTableName(event.target.value))
+  }
+
+
   render() {
 
     return (
@@ -50,11 +66,9 @@ class BaseModal extends Component {
           <div className="airma__logo">
             <img src={AirmaLogo} width="150" />
           </div>
-          <form>
-
-          </form>
-          <input name="baseID" className="input__field" type="text" placeholder="Base ID" />
-          <input name="apiKey" className="input__field" type="password" placeholder="API Key" />
+          <input onChange={this.apiKeyValue} name="apiKey" className="input__field" type="password" placeholder="API Key" />
+          <input onChange={this.baseIdValue} name="baseID" className="input__field" type="text" placeholder="Base ID" />
+          <input onChange={this.tableNameValue} name="tableName" className="input__field" type="text" placeholder="Table Name" />
           <input onClick={this.connectToAirtable} className="input__submit" type="button" value="Connect to Airtable" />
         </div>
       </div>
