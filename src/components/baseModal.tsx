@@ -12,6 +12,7 @@ import Iframe from 'react-iframe'
 import AirmaLogo from '../assets/airma-logo.svg'
 import '../ui.css'
 
+
 class BaseModal extends Component {
 
   componentDidMount() {
@@ -20,16 +21,20 @@ class BaseModal extends Component {
 
   connectToAirtable = () => {
 
+    let airTableApi = store.getState().airApi;
+    let baseId = store.getState().baseId;
+    let tableName = store.getState().tableName;
+
     var Airtable = require('airtable');
 
     Airtable.configure({
         endpointUrl: 'https://api.airtable.com',
-        apiKey: 'keyxu9imGgjUCsm5p'
+        apiKey: airTableApi
     });
 
-    var base = Airtable.base('appsN1xTPJYU0WIZC');
+    var base = Airtable.base(baseId);
 
-    base('Personas').select({
+    base(tableName).select({
     }).eachPage(function page(records, fetchNextPage) {
 
       records.map( function(data) {
@@ -39,21 +44,18 @@ class BaseModal extends Component {
     }, function done(err) {
         if (err) { console.error(err); return; }
     });
-    console.log(store.getState())
+
   }
 
   apiKeyValue(event) {
-    console.log(event.target.value)
     store.dispatch(getAirtableApi(event.target.value))
   }
 
   baseIdValue(event) {
-    console.log(event.target.value)
     store.dispatch(getAirtableBaseId(event.target.value))
   }
 
   tableNameValue(event) {
-    console.log(event.target.value)
     store.dispatch(getAirtableTableName(event.target.value))
   }
 

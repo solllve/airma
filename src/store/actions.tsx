@@ -2,26 +2,20 @@
 export function getAirtableApi(api) {
   return {
     type: "GET_API",
-    airtableCreds: {
-      airApi: api
-    }
+    airApi: api
   }
 }
 
 export function getAirtableBaseId(baseId) {
   return {
     type: "GET_BASEID",
-    airtableCreds: {
-      baseId: baseId
-    }
+    baseId: baseId
   }
 }
 
 export function getAirtableTableName(tableName) {
   return {
     type: "GET_TABLENAME",
-    airtableCreds: {
-      tableName: tableName
-    }
+    tableName: tableName
   }
 }

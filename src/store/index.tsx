@@ -1,7 +1,9 @@
 import {createStore} from "redux"
 
 const reducer = (state={
-    //airtableCreds: {}
+        airApi: '',
+        baseId: '',
+        tableName: ''
   }, action) => {
 
   switch(action.type) {
@@ -9,21 +11,21 @@ const reducer = (state={
     case "GET_API": {
       return {
         ...state,
-        airApi: action.airtableCreds.airApi,
+        airApi: action.airApi
       }
     }
 
     case "GET_BASEID": {
       return {
         ...state,
-        baseId: action.airtableCreds.baseId,
+        baseId: action.baseId
       }
     }
 
     case "GET_TABLENAME": {
       return {
         ...state,
-        tableName: action.airtableCreds.tableName,
+        tableName: action.tableName
       }
     }
 
