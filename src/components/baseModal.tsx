@@ -12,7 +12,6 @@ import Iframe from 'react-iframe'
 import AirmaLogo from '../assets/airma-logo.svg'
 import '../ui.css'
 
-
 class BaseModal extends Component {
 
   componentDidMount() {
@@ -49,16 +48,18 @@ class BaseModal extends Component {
 
   apiKeyValue(event) {
     store.dispatch(getAirtableApi(event.target.value))
+    this.setState({ apiKey: true });
   }
 
   baseIdValue(event) {
     store.dispatch(getAirtableBaseId(event.target.value))
+    this.setState({ baseId: true });
   }
 
   tableNameValue(event) {
     store.dispatch(getAirtableTableName(event.target.value))
+    this.setState({ tableName: true });
   }
-
 
   render() {
 
@@ -71,7 +72,9 @@ class BaseModal extends Component {
           <input onChange={this.apiKeyValue} name="apiKey" className="input__field" type="password" placeholder="API Key" />
           <input onChange={this.baseIdValue} name="baseID" className="input__field" type="text" placeholder="Base ID" />
           <input onChange={this.tableNameValue} name="tableName" className="input__field" type="text" placeholder="Table Name" />
+
           <input onClick={this.connectToAirtable} className="input__submit" type="button" value="Connect to Airtable" />
+          <input className="input__submit --disabled" type="button" value="Please fill in your Airtable details" />
         </div>
       </div>
     )

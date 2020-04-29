@@ -89,3 +89,13 @@ input.input__submit {
   margin: 5px 0 5px 0;
   cursor: pointer;
 }
+input.input__submit.--disabled {
+  display: block;
+  width: 100%;
+  border: none;
+  background-color: #F3E7EF;
+  padding: 10px;
+  color: #F195D1;
+  font-weight: bold;
+  margin: 5px 0 5px 0;
+}
