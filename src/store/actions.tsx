@@ -19,3 +19,10 @@ export function getAirtableTableName(tableName) {
     tableName: tableName
   }
 }
+
+export function getAirtableData(data) {
+  return {
+    type: "GET_TABLENAME",
+    airtableData: data
+  }
+}

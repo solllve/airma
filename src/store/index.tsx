@@ -3,7 +3,8 @@ import {createStore} from "redux"
 const reducer = (state={
         airApi: '',
         baseId: '',
-        tableName: ''
+        tableName: '',
+        airtableData: []
   }, action) => {
 
   switch(action.type) {
@@ -26,6 +27,13 @@ const reducer = (state={
       return {
         ...state,
         tableName: action.tableName
+      }
+    }
+
+    case "GET_AIRTABLE_DATA": {
+      return {
+        ...state,
+        airtableData: action.airtableData
       }
     }
 

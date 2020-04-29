@@ -47,6 +47,7 @@ class BaseModal extends Component {
 
   apiKeyValue(event) {
     store.dispatch(getAirtableApi(event.target.value))
+    console.log(store.getState())
   }
 
   baseIdValue(event) {
