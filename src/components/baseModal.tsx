@@ -4,7 +4,8 @@ import {connect,useSelector, useDispatch} from 'react-redux'
 import {
   getAirtableApi,
   getAirtableBaseId,
-  getAirtableTableName
+  getAirtableTableName,
+  getAirtableData
 } from "../store/actions"
 
 import store from '../store'
@@ -16,9 +17,13 @@ class BaseModal extends Component {
 
   connectToAirtable = () => {
 
-    let airTableApi = store.getState().airApi;
-    let baseId = store.getState().baseId;
-    let tableName = store.getState().tableName;
+    //let airTableApi = store.getState().airApi;
+    //let baseId = store.getState().baseId;
+    //let tableName = store.getState().tableName;
+
+    let airTableApi = 'keyxu9imGgjUCsm5p';
+    let baseId = 'appsN1xTPJYU0WIZC';
+    let tableName = 'Personas';
 
     var Airtable = require('airtable');
 
@@ -33,7 +38,8 @@ class BaseModal extends Component {
     }).eachPage(function page(records, fetchNextPage) {
 
       records.map( function(data) {
-        console.log(data.fields)
+        store.dispatch(getAirtableData(data.fields))
+        //console.log(store.getState().airtableData)
       });
 
     }, function done(err) {
@@ -47,7 +53,6 @@ class BaseModal extends Component {
 
   apiKeyValue(event) {
     store.dispatch(getAirtableApi(event.target.value))
-    console.log(store.getState())
   }
 
   baseIdValue(event) {

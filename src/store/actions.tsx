@@ -20,9 +20,9 @@ export function getAirtableTableName(tableName) {
   }
 }
 
-export function getAirtableData() {
+export function getAirtableData(data) {
   return {
     type: "GET_AIRTABLE_DATA",
-    airtableData: []
+    airtableData: data
   }
 }
