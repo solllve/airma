@@ -33,7 +33,7 @@ const reducer = (state={
     case "GET_AIRTABLE_DATA": {
       return {
         ...state,
-        airtableData: action.airtableData
+        airtableData: [...state.airtableData, action.airtableData]
       }
     }
 
