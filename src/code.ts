@@ -2,18 +2,29 @@
 figma.showUI(__html__)
 figma.ui.resize(450, 350)
 
+figma.loadFontAsync({ family: "Roboto", style: "Regular" })
 
 figma.ui.onmessage = (res) => {
   //airtable object
-  let airtableObject = res
+  const airtableObject = res
 
-  //map airtable array
-  //const sweeterArray = airtableObject.map(tableRow => {
-  //    return tableRow.
-  //});
+  //return map of nodes
+  airtableObject.map(tableRow => {
+    let arrayOfKeys = Object.keys(tableRow)
+    let arrayOfValues = Object.values(tableRow)
+      //text node
+
+    let textNode = figma.createText()
+
+    textNode.characters = tableRow.age
+    textNode
+
+    console.log(arrayOfValues)
+
+  });
 
   //text object
-  console.log(airtableObject)
+
 
   //figma.createPage().name = 'Airtable Data'
   //text node
@@ -22,8 +33,8 @@ figma.ui.onmessage = (res) => {
   //textNode
   //create figma Component
 
-  const component = figma.createComponent()
-  component.resizeWithoutConstraints(300, 100)
+  //const component = figma.createComponent()
+  //component.resizeWithoutConstraints(300, 100)
 
 }
 
