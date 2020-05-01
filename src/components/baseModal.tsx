@@ -21,8 +21,6 @@ class BaseModal extends Component {
     //let baseId = store.getState().baseId;
     //let tableName = store.getState().tableName;
 
-
-
     let airTableApi = 'keyxu9imGgjUCsm5p';
     let baseId = 'appsN1xTPJYU0WIZC';
     let tableName = 'Personas';
@@ -41,7 +39,7 @@ class BaseModal extends Component {
 
       records.map( function(data) {
         store.dispatch(getAirtableData(data.fields))
-        parent.postMessage({ pluginMessage: store.getState().airtableData }, '*')
+
       });
 
     }, function done(err) {
@@ -50,6 +48,8 @@ class BaseModal extends Component {
           return;
         }
     });
+
+    parent.postMessage({ pluginMessage: store.getState().airtableData }, '*')
 
   }
 
