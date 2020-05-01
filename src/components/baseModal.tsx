@@ -37,19 +37,30 @@ class BaseModal extends Component {
     base(tableName).select({
     }).eachPage(function page(records, fetchNextPage) {
 
-      records.map( function(data) {
-        store.dispatch(getAirtableData(data.fields))
+      let airtableArr = []
 
+      records.map(function(data) {
+        airtableArr.push(data.fields)
       });
 
+      store.dispatch(getAirtableData(airtableArr))
+      parent.postMessage({ pluginMessage: store.getState().airtableData[0] }, '*')
+
+
     }, function done(err) {
+
         if (err) {
           alert(err)
           return;
         }
-    });
+    },
 
-    parent.postMessage({ pluginMessage: store.getState().airtableData }, '*')
+
+
+
+  );
+
+
 
   }
 
