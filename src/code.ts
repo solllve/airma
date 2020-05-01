@@ -1,11 +1,18 @@
 
 
+
 figma.showUI(__html__)
 figma.ui.resize(450, 350)
 
-figma.ui.onmessage = (message) => {
-  console.log(message)
+figma.ui.onmessage = (res) => {
+
+  let airtableObject = res
+  console.log(airtableObject)
+  const airtablePage = figma.createPage()
+  airtablePage.name = 'Personas'
+  airtablePage
 }
+
 
 
 

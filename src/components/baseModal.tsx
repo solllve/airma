@@ -41,7 +41,6 @@ class BaseModal extends Component {
 
       records.map( function(data) {
         store.dispatch(getAirtableData(data.fields))
-        //console.log(store.getState().airtableData)
         parent.postMessage({ pluginMessage: store.getState().airtableData }, '*')
       });
 
