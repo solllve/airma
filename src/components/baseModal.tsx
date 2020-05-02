@@ -9,7 +9,6 @@ import {
 } from "../store/actions"
 
 import store from '../store'
-import Iframe from 'react-iframe'
 import AirmaLogo from '../assets/airma-logo.svg'
 import '../ui.css'
 
@@ -54,14 +53,7 @@ class BaseModal extends Component {
           return;
         }
     },
-
-
-
-
   );
-
-
-
   }
 
   apiKeyValue(event) {
