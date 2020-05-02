@@ -2,6 +2,7 @@ figma.showUI(__html__)
 figma.ui.resize(450, 350)
 figma.loadFontAsync({ family: "Roboto", style: "Regular" })
 
+
 //Use this to grab properties of any object in figma!
 for (const node of figma.currentPage.selection) {
   console.log(node)
