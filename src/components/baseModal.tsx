@@ -69,6 +69,7 @@ class BaseModal extends Component {
   }
 
   render() {
+
     return (
       <div className="airtable__container">
         <div className="airtable__container-fields-inner">

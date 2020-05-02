@@ -15,6 +15,18 @@ class App extends React.Component {
     //}
     //const getit = store.getState()
     //const showDoom = getit.showDoom
+    window.onmessage = async (event) => {
+      if (event.data.pluginMessage.type === 'networkRequest') {
+        var request = new XMLHttpRequest()
+        // This link has random lorem ipsum text
+        request.open('GET', 'https://cors-anywhere.herokuapp.com/http://www.randomtext.me/download/text/lorem/ul-8/5-15')
+        request.responseType = 'text'
+        request.onload = () => {
+          window.parent.postMessage({pluginMessage: request.response}, '*')
+        };
+        request.send()
+      }
+    }
       return (
         <div>
           <BaseModal />

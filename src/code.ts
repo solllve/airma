@@ -9,6 +9,15 @@ for (const node of figma.currentPage.selection) {
 }
 
 
+//img test
+const imagePath = './assets/airtable/john.jpg'
+const header_size = 70;
+const width = 255;
+const height = 255;
+const image_size = width * height * 4;
+const arr = new Uint8Array(header_size + image_size);
+
+
 figma.ui.onmessage = (res) => {
   //airtable object
   const airtableObject = res
