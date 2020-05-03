@@ -1,7 +1,7 @@
 figma.showUI(__html__)
 figma.ui.resize(450, 350)
 figma.loadFontAsync({ family: "Roboto", style: "Regular" })
-
+const CIP = require('canvas_image_processing');
 
 //Use this to grab properties of any object in figma!
 for (const node of figma.currentPage.selection) {
@@ -10,12 +10,6 @@ for (const node of figma.currentPage.selection) {
 
 
 //img test
-const imagePath = './assets/airtable/john.jpg'
-const header_size = 70;
-const width = 255;
-const height = 255;
-const image_size = width * height * 4;
-const arr = new Uint8Array(header_size + image_size);
 
 
 figma.ui.onmessage = (res) => {
