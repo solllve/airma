@@ -10,12 +10,11 @@ for (const node of figma.currentPage.selection) {
 
 
 //img test
-
-
 figma.ui.onmessage = (res) => {
   //airtable object
   const airtableObject = res
   //return map of nodes
+  //console.log(res)
   let airtableNumberOfResults = Object.keys(res[0]).length
 
   airtableObject.map(tableRow => {
@@ -40,18 +39,18 @@ figma.ui.onmessage = (res) => {
         let imageUrl = arrayOfValues[i][0].thumbnails.large.url
         //var arr = new Uint8Array([21,31]);
         //Hey this works!
-        let shapeNode = figma.createEllipse()
-        shapeNode.fills = [
-          {
-            blendMode: "NORMAL",
-            imageHash: "27f652802e903b9feac63df214e3cc2d369db90f",
-            opacity: 1,
-            scaleMode: "FILL",
-            scalingFactor: 0.5,
-            type: "IMAGE",
-            visible: true
-          }
-        ]
+        //let shapeNode = figma.createEllipse()
+        //shapeNode.fills = [
+        //  {
+        //    blendMode: "NORMAL",
+        //    imageHash: "27f652802e903b9feac63df214e3cc2d369db90f",
+        //    opacity: 1,
+        //    scaleMode: "FILL",
+        //    scalingFactor: 0.5,
+        //    type: "IMAGE",
+        //    visible: true
+        //  }
+        //]
 
         //imageNode.fill = [
         //  {

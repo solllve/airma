@@ -16,9 +16,13 @@ class BaseModal extends Component {
 
   connectToAirtable = () => {
 
-    let airTableApi = store.getState().airApi;
-    let baseId = store.getState().baseId;
-    let tableName = store.getState().tableName;
+    //let airTableApi = store.getState().airApi;
+    //let baseId = store.getState().baseId;
+    //let tableName = store.getState().tableName;
+
+    let airTableApi = 'keyxu9imGgjUCsm5p';
+    let baseId = 'appsN1xTPJYU0WIZC';
+    let tableName = 'Personas';
 
     var Airtable = require('airtable');
 
