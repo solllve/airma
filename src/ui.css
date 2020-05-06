@@ -99,3 +99,18 @@ input.input__submit.--disabled {
   font-weight: bold;
   margin: 5px 0 5px 0;
 }
+.loadingLogo {
+  width: 88px;
+  height: 39px;
+  position: relative;
+  display: inline-block;
+  margin: 0px;
+  padding: 0px;
+}
+.signInHeader {
+  width: 439px;
+  height: 136px;
+  left: 0px;
+  top: 35px;
+  background: linear-gradient(231.15deg, #ED2AA9 36.24%, #A635FF 93.74%);
+}

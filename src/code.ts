@@ -8,7 +8,6 @@ for (const node of figma.currentPage.selection) {
   console.log(node)
 }
 
-
 //img test
 figma.ui.onmessage = (res) => {
   //airtable object
@@ -78,10 +77,6 @@ figma.ui.onmessage = (res) => {
 
     //text node
 
-    //console.log(i)
-    //console.log(Object.keys(tableRow).length)
-    //console.log(Object.keys(tableRow))
-
   });
 
   //figma.createPage().name = 'Airtable Data'
@@ -96,13 +91,6 @@ figma.ui.onmessage = (res) => {
   //component.resizeWithoutConstraints(300, 100)
   //const selectedPage = figma.currentPage.selection[0]
 }
-
-
-
-
-
-
-
 
 //console.log(this)
 //figma.createRectangle();
