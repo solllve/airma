@@ -134,9 +134,9 @@ input.input__submit.--disabled {
 
 /*animations*/
 #moveLogo1 {
-  -webkit-animation: moveLogo1 2s infinite; /* Safari 4+ */
-  -moz-animation:    moveLogo1 2s infinite; /* Fx 5+ */
-  animation:         moveLogo1 2s infinite; /* IE 10+, Fx 29+ */
+  -webkit-animation: moveLogo1 2.5s infinite; /* Safari 4+ */
+  -moz-animation:    moveLogo1 2.5s infinite; /* Fx 5+ */
+  animation:         moveLogo1 2.5s infinite; /* IE 10+, Fx 29+ */
 }
 @-webkit-keyframes moveLogo1 {
   0%   {
@@ -182,9 +182,9 @@ input.input__submit.--disabled {
 }
 
 #moveLogo2 {
-  -webkit-animation: moveLogo2 2s infinite; /* Safari 4+ */
-  -moz-animation:    moveLogo2 2s infinite; /* Fx 5+ */
-  animation:         moveLogo2 2s infinite; /* IE 10+, Fx 29+ */
+  -webkit-animation: moveLogo2 2.5s infinite; /* Safari 4+ */
+  -moz-animation:    moveLogo2 2.5s infinite; /* Fx 5+ */
+  animation:         moveLogo2 2.5s infinite; /* IE 10+, Fx 29+ */
   animation-delay: 0.5s;
 }
 @-webkit-keyframes moveLogo2 {
@@ -231,9 +231,9 @@ input.input__submit.--disabled {
 }
 
 #moveLogo3 {
-  -webkit-animation: moveLogo3 2s infinite; /* Safari 4+ */
-  -moz-animation:    moveLogo3 2s infinite; /* Fx 5+ */
-  animation:         moveLogo3 2s infinite; /* IE 10+, Fx 29+ */
+  -webkit-animation: moveLogo3 2.5s infinite; /* Safari 4+ */
+  -moz-animation:    moveLogo3 2.5s infinite; /* Fx 5+ */
+  animation:         moveLogo3 2.5s infinite; /* IE 10+, Fx 29+ */
   animation-delay: 1s;
 }
 @-webkit-keyframes moveLogo3 {
