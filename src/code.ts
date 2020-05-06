@@ -1,5 +1,5 @@
 figma.showUI(__html__)
-figma.ui.resize(450, 350)
+figma.ui.resize(439, 350)
 figma.loadFontAsync({ family: "Roboto", style: "Regular" })
 const CIP = require('canvas_image_processing');
 

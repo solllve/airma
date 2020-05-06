@@ -1,7 +1,9 @@
 body {
-  text-align: center;
-  margin: 20px;
+  text-align: left;
   font-family: 'Roboto', sans-serif;
+  margin: 0px;
+  padding: 0px;
+  background-color: #2C2C2C;
 }
 .iframe_window {
   padding: 0px;
@@ -42,14 +44,10 @@ input:focus {
 }
 
 .airtable__container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   width: 100%;
 }
 .airma__logo {
-  align-self: flex-start;
   padding: 0px;
   width: 100%;
   text-align: center;
@@ -104,13 +102,179 @@ input.input__submit.--disabled {
   height: 39px;
   position: relative;
   display: inline-block;
-  margin: 0px;
+  margin: 25px 0px 0px 0px;
   padding: 0px;
 }
 .signInHeader {
   width: 439px;
   height: 136px;
+  text-align: center;
   left: 0px;
   top: 35px;
   background: linear-gradient(231.15deg, #ED2AA9 36.24%, #A635FF 93.74%);
+}
+.logo--1 {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+}
+.logo--2 {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  z-index: 2;
+}
+.logo--3 {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  z-index: 1;
+}
+
+/*animations*/
+#moveLogo1 {
+  -webkit-animation: moveLogo1 2s infinite; /* Safari 4+ */
+  -moz-animation:    moveLogo1 2s infinite; /* Fx 5+ */
+  animation:         moveLogo1 2s infinite; /* IE 10+, Fx 29+ */
+}
+@-webkit-keyframes moveLogo1 {
+  0%   {
+    opacity: 1;
+    top: 0px;
+  }
+  50%   {
+    opacity: 0.5;
+    top: 5px;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+@-moz-keyframes moveLogo1 {
+  0%   {
+    opacity: 1;
+    top: 0px;
+  }
+  50%   {
+    opacity: 0.5;
+    top: 5px;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+@keyframes moveLogo1 {
+  0%   {
+    opacity: 1;
+    top: 0px;
+  }
+  50%   {
+    opacity: 0.5;
+    top: 5px;
+  }
+  100% {
+    opacity: 1;
+    top: 0px;
+  }
+}
+
+#moveLogo2 {
+  -webkit-animation: moveLogo2 2s infinite; /* Safari 4+ */
+  -moz-animation:    moveLogo2 2s infinite; /* Fx 5+ */
+  animation:         moveLogo2 2s infinite; /* IE 10+, Fx 29+ */
+  animation-delay: 0.5s;
+}
+@-webkit-keyframes moveLogo2 {
+  0%   {
+    opacity: 1;
+    top: 8px;
+  }
+  50%   {
+    opacity: 0.5;
+    top: 13px;
+  }
+  100% {
+    opacity: 1;
+    top: 8px;
+  }
+}
+@-moz-keyframes moveLogo2 {
+  0%   {
+    opacity: 1;
+    top: 8px;
+  }
+  50%   {
+    opacity: 0.5;
+    top: 13px;
+  }
+  100% {
+    opacity: 1;
+    top: 8px;
+  }
+}
+@keyframes moveLogo2 {
+  0%   {
+    opacity: 1;
+    top: 8px;
+  }
+  50%   {
+    opacity: 0.5;
+    top: 13px;
+  }
+  100% {
+    opacity: 1;
+    top: 8px;
+  }
+}
+
+#moveLogo3 {
+  -webkit-animation: moveLogo3 2s infinite; /* Safari 4+ */
+  -moz-animation:    moveLogo3 2s infinite; /* Fx 5+ */
+  animation:         moveLogo3 2s infinite; /* IE 10+, Fx 29+ */
+  animation-delay: 1s;
+}
+@-webkit-keyframes moveLogo3 {
+  0%   {
+    opacity: 1;
+    top: 16px;
+  }
+  50%   {
+    opacity: 0.5;
+    top: 21px;
+  }
+  100% {
+    opacity: 1;
+    top: 16px;
+  }
+}
+@-moz-keyframes moveLogo3 {
+  0%   {
+    opacity: 1;
+    top: 16px;
+  }
+  50%   {
+    opacity: 0.5;
+    top: 21px;
+  }
+  100% {
+    opacity: 1;
+    top: 16px;
+  }
+}
+@keyframes moveLogo3 {
+  0%   {
+    opacity: 1;
+    top: 16px;
+  }
+  50%   {
+    opacity: 0.5;
+    top: 21px;
+  }
+  100% {
+    opacity: 1;
+    top: 16px;
+  }
 }
