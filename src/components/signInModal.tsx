@@ -13,35 +13,64 @@ import SignInHeader from "./SignInHeader";
 import '../ui.css'
 
 type MyProps = {};
-type MyState = { value: string };
+type MyState = {
+  airtableApi: string,
+  baseId: string,
+  tableName: string
+};
 
 class SignInModal extends Component<MyProps, MyState> {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
-    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      airtableApi: '',
+      baseId: '',
+      tableName: ''
+    };
+    this.airtableApiChange = this.airtableApiChange.bind(this);
+    this.baseIdChange = this.baseIdChange.bind(this);
+    this.tableNameChange = this.tableNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
+  airtableApiChange(event) {
+    this.setState(
+      {
+        airtableApi: event.target.value
+      }
+    );
+  }
+
+  baseIdChange(event) {
+    this.setState(
+      {
+        baseId: event.target.value
+      }
+    );
+  }
+  tableNameChange(event) {
+    this.setState(
+      {
+        tableName: event.target.value
+      }
+    );
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert(this.state.airtableApi);
     event.preventDefault();
   }
 
   render() {
-
     return (
       <div className="airtable__container">
         <SignInHeader />
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
+
+          <input type="text" value={this.state.airtableApi} onChange={this.airtableApiChange} />
+          <input type="text" value={this.state.baseId} onChange={this.baseIdChange} />
+          <input type="text" value={this.state.tableName} onChange={this.tableNameChange} />
+
           <input type="submit" value="Submit" />
         </form>
       </div>
