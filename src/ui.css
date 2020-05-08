@@ -77,6 +77,9 @@ input.input__field {
   margin: 5px 0 5px 0;
   background: none;
 }
+input.input__field.--invalid {
+  border: solid 1px #C34060;
+}
 input.input__field.--password__field {
   color: #9F5FD0;
 }
@@ -108,6 +111,14 @@ input.input__submit.--disabled {
   color: #F195D1;
   font-weight: bold;
   margin: 5px 0 5px 0;
+}
+.input__field-container {
+  position: relative;
+}
+.--error-validation {
+  position: absolute;
+  right: 0px;
+  top: 5px;
 }
 .form__inner {
   padding: 20px;

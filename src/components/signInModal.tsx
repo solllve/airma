@@ -51,7 +51,7 @@ class SignInModal extends Component<MyProps, MyState> {
       }).then(function(response) {
 
         if (response.status == 200) {
-          resolve("Done!")
+          resolve(true)
           store.dispatch(getAirtableData(response))
         }
 
@@ -71,6 +71,7 @@ class SignInModal extends Component<MyProps, MyState> {
         airtableApi: event.target.value
       }
     );
+
   }
 
   baseIdChange(event) {
@@ -93,8 +94,17 @@ class SignInModal extends Component<MyProps, MyState> {
     event.preventDefault();
   }
 
-  render() {
+  apiIsValid() {
+    if(this.state.airtableApi != '') {
+      return true
+    }
+  }
 
+  fieldValidator() {
+    return '&#128077;'
+  }
+
+  render() {
     this.connectToAirtableApi()
 
     return (
@@ -102,9 +112,16 @@ class SignInModal extends Component<MyProps, MyState> {
         <SignInHeader />
         <div className="form__inner">
           <form onSubmit={this.handleSubmit}>
-            <input className="input__field --password__field" type="password" value={this.state.airtableApi} onChange={this.airtableApiChange} placeholder="API Key"  />
-            <input className="input__field" type="text" value={this.state.baseId} onChange={this.baseIdChange} placeholder="Base ID"  />
-            <input className="input__field" type="text" value={this.state.tableName} onChange={this.tableNameChange} placeholder="Table Name"  />
+            <div className="input__field-container">
+              <span className="--error-validation">{this.fieldValidator()}</span>
+              <input className={"input__field --password__field" + (this.apiIsValid() ? '' : ' --invalid')} type="password" value={this.state.airtableApi} onChange={this.airtableApiChange} placeholder="API Key"  />
+            </div>
+            <div className="input__field-container">
+              <input className="input__field" type="text" value={this.state.baseId} onChange={this.baseIdChange} placeholder="Base ID"  />
+            </div>
+            <div className="input__field-container">
+              <input className="input__field" type="text" value={this.state.tableName} onChange={this.tableNameChange} placeholder="Table Name"  />
+            </div>
             <input className="input__submit" type="submit" value="Submit"  />
           </form>
         </div>
