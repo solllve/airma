@@ -73,8 +73,20 @@ input.input__field {
   width: 100%;
   border: solid 1px #B154F9;
   padding: 10px;
-  color: #151515;
+  color: #FBF6F6;
   margin: 5px 0 5px 0;
+  background: none;
+}
+input.input__field.--password__field {
+  color: #9F5FD0;
+}
+
+input.input__field::placeholder {
+  color: #FBF6F6;
+}
+input.input__field:focus {
+  border: solid 1px #D8A9FC;
+  color: #ffffff;
 }
 input.input__submit {
   display: block;
@@ -96,6 +108,9 @@ input.input__submit.--disabled {
   color: #F195D1;
   font-weight: bold;
   margin: 5px 0 5px 0;
+}
+.form__inner {
+  padding: 20px;
 }
 .loadingLogo {
   width: 88px;

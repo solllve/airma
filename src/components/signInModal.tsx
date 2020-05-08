@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { useForm } from "react-hook-form";
+import ReactDOM from 'react-dom'
+import { useForm } from "react-hook-form"
 import {connect,useSelector, useDispatch} from 'react-redux'
+
 import {
   getAirtableApi,
   getAirtableBaseId,
@@ -16,7 +18,7 @@ type MyProps = {};
 type MyState = {
   airtableApi: string,
   baseId: string,
-  tableName: string
+  tableName: string,
 };
 
 class SignInModal extends Component<MyProps, MyState> {
@@ -25,12 +27,42 @@ class SignInModal extends Component<MyProps, MyState> {
     this.state = {
       airtableApi: '',
       baseId: '',
-      tableName: ''
+      tableName: '',
     };
     this.airtableApiChange = this.airtableApiChange.bind(this);
     this.baseIdChange = this.baseIdChange.bind(this);
     this.tableNameChange = this.tableNameChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  async connectToAirtableApi() {
+    let promise = new Promise((resolve, reject) => {
+      let apiKeyLocal = this.state.airtableApi
+      let baseIdLocal = 'appsN1xTPJYU0WIZC'
+      let tableNameLocal = 'Personas'
+      var options = {
+        'method': 'GET',
+        'url': 'https://api.airtable.com/v0/'+ baseIdLocal +'/'+ tableNameLocal +'?api_key='+ apiKeyLocal,
+      };
+      fetch(options.url, {
+        mode: 'cors',
+        method: "GET",
+        credentials: "same-origin"
+      }).then(function(response) {
+
+        if (response.status == 200) {
+          resolve("Done!")
+          store.dispatch(getAirtableData(response))
+        }
+
+        //return response.text()
+      }, function(error) {
+        error.message //=> String
+      })
+
+    })
+    let result = await promise
+    console.log(result)
   }
 
   airtableApiChange(event) {
@@ -62,17 +94,20 @@ class SignInModal extends Component<MyProps, MyState> {
   }
 
   render() {
+
+    this.connectToAirtableApi()
+
     return (
       <div className="airtable__container">
         <SignInHeader />
-        <form onSubmit={this.handleSubmit}>
-
-          <input type="text" value={this.state.airtableApi} onChange={this.airtableApiChange} />
-          <input type="text" value={this.state.baseId} onChange={this.baseIdChange} />
-          <input type="text" value={this.state.tableName} onChange={this.tableNameChange} />
-
-          <input type="submit" value="Submit" />
-        </form>
+        <div className="form__inner">
+          <form onSubmit={this.handleSubmit}>
+            <input className="input__field --password__field" type="password" value={this.state.airtableApi} onChange={this.airtableApiChange} placeholder="API Key"  />
+            <input className="input__field" type="text" value={this.state.baseId} onChange={this.baseIdChange} placeholder="Base ID"  />
+            <input className="input__field" type="text" value={this.state.tableName} onChange={this.tableNameChange} placeholder="Table Name"  />
+            <input className="input__submit" type="submit" value="Submit"  />
+          </form>
+        </div>
       </div>
     )
   }
