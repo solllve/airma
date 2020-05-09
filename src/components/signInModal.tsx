@@ -22,7 +22,7 @@ type MyState = {
 };
 
 class SignInModal extends Component<MyProps, MyState> {
-  constructor(props) {
+  constructor(props: MyProps) {
     super(props);
     this.state = {
       airtableApi: '',
@@ -38,34 +38,34 @@ class SignInModal extends Component<MyProps, MyState> {
   async connectToAirtableApi() {
     let promise = new Promise((resolve, reject) => {
       let apiKeyLocal = this.state.airtableApi
-      let baseIdLocal = 'appsN1xTPJYU0WIZC'
-      let tableNameLocal = 'Personas'
+      let baseIdLocal = this.state.baseId
+      let tableNameLocal = this.state.tableName
       var options = {
         'method': 'GET',
         'url': 'https://api.airtable.com/v0/'+ baseIdLocal +'/'+ tableNameLocal +'?api_key='+ apiKeyLocal,
       };
       fetch(options.url, {
         mode: 'cors',
-        method: "GET",
+        method: options.method,
         credentials: "same-origin"
       }).then(function(response) {
 
         if (response.status == 200) {
-          resolve(true)
-          store.dispatch(getAirtableData(response))
+          resolve(response.text())
+          console.log('successful connection to api')
         }
-
-        //return response.text()
       }, function(error) {
-        error.message //=> String
+        error.message
       })
 
     })
     let result = await promise
-    console.log(result)
+    store.dispatch(getAirtableData(result))
+    parent.postMessage({ pluginMessage: { type: 'airtable', message: store.getState().airtableData[0] } }, '*')
   }
 
   airtableApiChange(event) {
+    store.dispatch(getAirtableApi(event.target.value))
     this.setState(
       {
         airtableApi: event.target.value
@@ -90,7 +90,6 @@ class SignInModal extends Component<MyProps, MyState> {
   }
 
   handleSubmit(event) {
-    alert(this.state.airtableApi);
     event.preventDefault();
   }
 
@@ -100,29 +99,69 @@ class SignInModal extends Component<MyProps, MyState> {
     }
   }
 
-  fieldValidator() {
-    return '&#128077;'
+  baseIdIsValid() {
+    if(this.state.baseId != '') {
+      return true
+    }
+  }
+
+  tableNameIsValid() {
+    if(this.state.tableName != '') {
+      return true
+    }
+  }
+
+  apiFieldValidator() {
+    if(this.state.airtableApi == '') {
+      return '🤦'
+    }
+    else {
+      return '👍'
+    }
+  }
+
+  baseIdFieldValidator() {
+    if(this.state.baseId == '') {
+      return '🤦'
+    }
+    else {
+      return '👍'
+    }
+  }
+
+  tableNameFieldValidator() {
+    if(this.state.tableName == '') {
+      return '🤦'
+    }
+    else {
+      return '👍'
+    }
+  }
+
+  closePluginWindow() {
+    parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*')
   }
 
   render() {
     this.connectToAirtableApi()
-
     return (
       <div className="airtable__container">
         <SignInHeader />
         <div className="form__inner">
           <form onSubmit={this.handleSubmit}>
             <div className="input__field-container">
-              <span className="--error-validation">{this.fieldValidator()}</span>
+              <span className="--error-validation">{this.apiFieldValidator()}</span>
               <input className={"input__field --password__field" + (this.apiIsValid() ? '' : ' --invalid')} type="password" value={this.state.airtableApi} onChange={this.airtableApiChange} placeholder="API Key"  />
             </div>
             <div className="input__field-container">
-              <input className="input__field" type="text" value={this.state.baseId} onChange={this.baseIdChange} placeholder="Base ID"  />
+              <span className="--error-validation">{this.baseIdFieldValidator()}</span>
+              <input className={"input__field" + (this.baseIdIsValid() ? '' : ' --invalid')} type="text" value={this.state.baseId} onChange={this.baseIdChange} placeholder="Base ID"  />
             </div>
             <div className="input__field-container">
-              <input className="input__field" type="text" value={this.state.tableName} onChange={this.tableNameChange} placeholder="Table Name"  />
+              <span className="--error-validation">{this.tableNameFieldValidator()}</span>
+              <input className={"input__field" + (this.tableNameIsValid() ? '' : ' --invalid')} type="text" value={this.state.tableName} onChange={this.tableNameChange} placeholder="Table Name"  />
             </div>
-            <input className="input__submit" type="submit" value="Submit"  />
+            <input onClick={this.closePluginWindow} className={"input__submit" + (this.tableNameIsValid() ? '' : ' --invalid')} type="submit" value="Connect to Airtable"  />
           </form>
         </div>
       </div>
