@@ -44,19 +44,22 @@ class SignInModal extends Component<MyProps, MyState> {
         'method': 'GET',
         'url': 'https://api.airtable.com/v0/'+ baseIdLocal +'/'+ tableNameLocal +'?api_key='+ apiKeyLocal,
       };
-      fetch(options.url, {
-        mode: 'cors',
-        method: options.method,
-        credentials: "same-origin"
-      }).then(function(response) {
+      if(apiKeyLocal != '' && baseIdLocal != '' && tableNameLocal != '' ) {
+        fetch(options.url, {
+          mode: 'cors',
+          method: options.method,
+          credentials: "same-origin"
+        }).then(function(response) {
 
-        if (response.status == 200) {
-          resolve(response.text())
-          console.log('successful connection to api')
-        }
-      }, function(error) {
-        error.message
-      })
+          if (response.status == 200) {
+            resolve(response.text())
+            console.log('successful connection to api')
+          }
+        }, function(error) {
+          //error.message
+          console.log('You still require some verification, Bub.')
+        })
+      }
 
     })
     let result = await promise

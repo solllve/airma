@@ -20,14 +20,12 @@ figma.ui.onmessage = msg => {
 
     arrayOfTableResults.push(airtableObject.records)
 
-    console.log(arrayOfTableResults)
-
       arrayOfTableResults.map(tableRow => {
 
           for(var i = 0; i < tableRow.length; ++i){
-
               let arrayOfValues = Object.values(tableRow[i].fields)
               let arrayOfKeys = Object.keys(tableRow[i].fields)
+              console.log(tableRow[i].fields)
           }
 
       });
