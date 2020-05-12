@@ -25,9 +25,9 @@ class SignInModal extends Component<MyProps, MyState> {
   constructor(props: MyProps) {
     super(props);
     this.state = {
-      airtableApi: '',
-      baseId: '',
-      tableName: '',
+      airtableApi: 'keyxu9imGgjUCsm5p',
+      baseId: 'appsN1xTPJYU0WIZC',
+      tableName: 'Personas',
     };
     this.airtableApiChange = this.airtableApiChange.bind(this);
     this.baseIdChange = this.baseIdChange.bind(this);

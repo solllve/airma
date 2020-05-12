@@ -1,33 +1,57 @@
 
+//figma preliminaries
 figma.showUI(__html__)
 figma.ui.resize(439, 350)
 figma.loadFontAsync({ family: "Roboto", style: "Regular" })
 const CIP = require('canvas_image_processing');
 
+//console page pagelist
+
+  //figma.currentPage = figma.root.children[2]
+  //figma.currentPage: PageNode = figma.root.children[2]
+
+//create new figma Page
+figma.createPage().name = 'Airtable Data'
+
+//Navigate to airtable data page
+figma.currentPage = figma.root.children.slice(-1).pop() as PageNode
+
 //Use this to grab properties of any object in figma!
 for (const node of figma.currentPage.selection) {
   console.log(node)
 }
+
 figma.ui.onmessage = msg => {
   if (msg.type === 'close-plugin') {
     figma.closePlugin()
   }
   if (msg.type === 'airtable') {
 
+    //data array
     let arrayOfTableResults = [];
-      //airtable object
+    //airtable object
     const airtableObject = JSON.parse(msg.message)
 
     arrayOfTableResults.push(airtableObject.records)
 
+    let numberOfFields = Object.keys(arrayOfTableResults[0][0]['fields']).length
+
       arrayOfTableResults.map(tableRow => {
 
+          //give me loop of rows
           for(var i = 0; i < tableRow.length; ++i){
-              let arrayOfValues = Object.values(tableRow[i].fields)
-              let arrayOfKeys = Object.keys(tableRow[i].fields)
-              console.log(tableRow[i].fields)
-          }
+            let arrayOfValues = Object.values(tableRow[i].fields)
+            let arrayOfKeys = Object.keys(tableRow[i].fields)
 
+            //give me loop of fields
+            for(var l = 0; l < numberOfFields; ++l){
+
+              //let textNode = figma.createText()
+              //textNode.characters = arrayOfValues[l].toString()
+              //textNode
+            }
+
+          }
       });
     }
   }
@@ -89,7 +113,7 @@ figma.ui.onmessage = msg => {
 
 //    });
 
-    //figma.createPage().name = 'Airtable Data'
+
 
     //text node
     //const textNode = figma.createText()
