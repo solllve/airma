@@ -40,15 +40,32 @@ figma.ui.onmessage = msg => {
 
           //give me loop of rows
           for(var i = 0; i < tableRow.length; ++i){
+
             let arrayOfValues = Object.values(tableRow[i].fields)
             let arrayOfKeys = Object.keys(tableRow[i].fields)
+
+            const frame = figma.createFrame()
 
             //give me loop of fields
             for(var l = 0; l < numberOfFields; ++l){
 
-              //let textNode = figma.createText()
-              //textNode.characters = arrayOfValues[l].toString()
-              //textNode
+              let textNode = figma.createText()
+              const frameWidth = 150 * Number(numberOfFields)
+              const frameHeight = 70
+              frame.resizeWithoutConstraints(frameWidth, frameHeight)
+              frame.appendChild(textNode)
+              frame.y = i * 150
+              textNode.y = 30
+              textNode.x = l * 150
+              textNode.resize(150, 30)
+
+              if(arrayOfKeys[l] == 'image') {
+                textNode.characters = 'Image support coming soon'
+              }
+              else {
+                textNode.characters = arrayOfValues[l].toString()
+              }
+
             }
 
           }
