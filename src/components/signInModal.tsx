@@ -145,6 +145,19 @@ class SignInModal extends Component<MyProps, MyState> {
     parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*')
   }
 
+  buttonCondition() {
+      if(this.state.tableName != '' && this.state.baseId != '' && this.state.airtableApi != '' ) {
+        return (
+            <input onClick={this.closePluginWindow} className={"input__submit"} type="submit" value="Connect to Airtable"  />
+        )
+      }
+      else {
+        return (
+          <input className={"input__submit --invalid"} type="submit" value="Connect to Airtable"  />
+        )
+      }
+  }
+
   render() {
     this.connectToAirtableApi()
     return (
@@ -164,8 +177,7 @@ class SignInModal extends Component<MyProps, MyState> {
               <span className="--error-validation">{this.tableNameFieldValidator()}</span>
               <input className={"input__field" + (this.tableNameIsValid() ? '' : ' --invalid')} type="text" value={this.state.tableName} onChange={this.tableNameChange} placeholder="Table Name"  />
             </div>
-            {console.log('test')}
-            <input onClick={this.closePluginWindow} className={"input__submit" + (this.tableNameIsValid() ? '' : ' --invalid')} type="submit" value="Connect to Airtable"  />
+            {this.buttonCondition()}
           </form>
         </div>
       </div>
