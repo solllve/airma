@@ -25,9 +25,9 @@ class SignInModal extends Component<MyProps, MyState> {
   constructor(props: MyProps) {
     super(props);
     this.state = {
-      airtableApi: 'keyxu9imGgjUCsm5p',
-      baseId: 'appsN1xTPJYU0WIZC',
-      tableName: 'Personas',
+      airtableApi: '',
+      baseId: '',
+      tableName: '',
     };
     this.airtableApiChange = this.airtableApiChange.bind(this);
     this.baseIdChange = this.baseIdChange.bind(this);
@@ -164,6 +164,7 @@ class SignInModal extends Component<MyProps, MyState> {
               <span className="--error-validation">{this.tableNameFieldValidator()}</span>
               <input className={"input__field" + (this.tableNameIsValid() ? '' : ' --invalid')} type="text" value={this.state.tableName} onChange={this.tableNameChange} placeholder="Table Name"  />
             </div>
+            {console.log('test')}
             <input onClick={this.closePluginWindow} className={"input__submit" + (this.tableNameIsValid() ? '' : ' --invalid')} type="submit" value="Connect to Airtable"  />
           </form>
         </div>

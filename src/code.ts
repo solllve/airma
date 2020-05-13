@@ -5,17 +5,6 @@ figma.ui.resize(439, 350)
 figma.loadFontAsync({ family: "Roboto", style: "Regular" })
 const CIP = require('canvas_image_processing');
 
-//console page pagelist
-
-  //figma.currentPage = figma.root.children[2]
-  //figma.currentPage: PageNode = figma.root.children[2]
-
-//create new figma Page
-figma.createPage().name = 'Airtable Data'
-
-//Navigate to airtable data page
-figma.currentPage = figma.root.children.slice(-1).pop() as PageNode
-
 //Use this to grab properties of any object in figma!
 for (const node of figma.currentPage.selection) {
   console.log(node)
@@ -26,6 +15,12 @@ figma.ui.onmessage = msg => {
     figma.closePlugin()
   }
   if (msg.type === 'airtable') {
+
+    //create new figma Page
+    figma.createPage().name = 'Airtable Data'
+
+    //Navigate to airtable data page
+    figma.currentPage = figma.root.children.slice(-1).pop() as PageNode
 
     //data array
     let arrayOfTableResults = [];
