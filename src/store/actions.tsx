@@ -20,10 +20,10 @@ export function getAirtableTableName(tableName) {
   }
 }
 
-export function getAirtableTableConnection(url) {
+export function getAirtableTableConnection() {
   return {
     type: "GET_CONNECTION",
-    fetchUrl: url
+    fetchUrl: true
   }
 }
 

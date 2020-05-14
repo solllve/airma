@@ -7,7 +7,8 @@ import {
   getAirtableApi,
   getAirtableBaseId,
   getAirtableTableName,
-  getAirtableData
+  getAirtableData,
+  getAirtableTableConnection
 } from "../store/actions"
 import store from '../store'
 import AirmaLogo from '../assets/airma-logo.svg'
@@ -19,7 +20,59 @@ type MyState = {
   airtableApi: string,
   baseId: string,
   tableName: string,
+  isLoaded: boolean
 };
+
+class SubmitButton extends Component<MyProps, MyState> {
+  constructor(props: MyProps) {
+    super(props);
+    this.state = {
+      airtableApi: '',
+      baseId: '',
+      tableName: '',
+      isLoaded: false,
+    };
+  }
+  componentDidMount() {
+    fetch('https://api.airtable.com/v0/'+ store.getState().baseId +'/'+ store.getState().tableName +'?api_key=' + store.getState().airApi)
+      .then(res => res)
+      .then(
+        (result) => {
+          console.log(result.status)
+          if (result.status == 200) {
+              this.setState({
+               isLoaded: true
+             });
+           }
+        },
+
+        (error) => {
+          console.log(error)
+          this.setState({
+           isLoaded: false
+         });
+        }
+      )
+  }
+  closePluginWindow() {
+    parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*')
+  }
+  render() {
+    const {isLoaded } = this.state;
+    console.log(isLoaded)
+    if(isLoaded == true) {
+      return (
+        <input onClick={this.closePluginWindow} className={"input__submit"} type="submit" value="Connect to Airtable"  />
+      )
+    }
+    else if(isLoaded == false) {
+      return (
+        <input className={"input__submit --invalid"} type="submit" value="Connect to Airtable"  />
+      )
+    }
+  }
+
+}
 
 class SignInModal extends Component<MyProps, MyState> {
   constructor(props: MyProps) {
@@ -27,7 +80,8 @@ class SignInModal extends Component<MyProps, MyState> {
     this.state = {
       airtableApi: 'keyxu9imGgjUCsm5p',
       baseId: 'appsN1xTPJYU0WIZC',
-      tableName: 'Personas',
+      tableName: '',
+      isLoaded: false,
     };
     this.airtableApiChange = this.airtableApiChange.bind(this);
     this.baseIdChange = this.baseIdChange.bind(this);
@@ -54,6 +108,7 @@ class SignInModal extends Component<MyProps, MyState> {
           if (response.status == 200) {
             resolve(response.text())
             console.log('successful connection to api')
+
           }
         }, function(error) {
           //error.message
@@ -141,22 +196,6 @@ class SignInModal extends Component<MyProps, MyState> {
     }
   }
 
-  closePluginWindow() {
-    parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*')
-  }
-
-  buttonCondition() {
-      if(this.state.tableName != '' && this.state.baseId != '' && this.state.airtableApi != '' ) {
-        return (
-            <input onClick={this.closePluginWindow} className={"input__submit"} type="submit" value="Connect to Airtable"  />
-        )
-      }
-      else {
-        return (
-          <input className={"input__submit --invalid"} type="submit" value="Connect to Airtable"  />
-        )
-      }
-  }
 
   render() {
     this.connectToAirtableApi()
@@ -177,7 +216,7 @@ class SignInModal extends Component<MyProps, MyState> {
               <span className="--error-validation">{this.tableNameFieldValidator()}</span>
               <input className={"input__field" + (this.tableNameIsValid() ? '' : ' --invalid')} type="text" value={this.state.tableName} onChange={this.tableNameChange} placeholder="Table Name"  />
             </div>
-            {this.buttonCondition()}
+            <SubmitButton />
           </form>
         </div>
       </div>

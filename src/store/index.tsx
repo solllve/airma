@@ -1,11 +1,11 @@
 import {createStore} from "redux"
 
 const reducer = (state={
-        airApi: '',
-        baseId: '',
-        tableName: '',
+        airApi: 'keyxu9imGgjUCsm5p',
+        baseId: 'appsN1xTPJYU0WIZC',
+        tableName: 'Personas',
         airtableData: [],
-        fetchUrl: ''
+        fetchUrl: false
   }, action) => {
 
   switch(action.type) {
