@@ -25,9 +25,9 @@ class SignInModal extends Component<MyProps, MyState> {
   constructor(props: MyProps) {
     super(props);
     this.state = {
-      airtableApi: '',
-      baseId: '',
-      tableName: '',
+      airtableApi: 'keyxu9imGgjUCsm5p',
+      baseId: 'appsN1xTPJYU0WIZC',
+      tableName: 'Personas',
     };
     this.airtableApiChange = this.airtableApiChange.bind(this);
     this.baseIdChange = this.baseIdChange.bind(this);
@@ -64,7 +64,7 @@ class SignInModal extends Component<MyProps, MyState> {
     })
     let result = await promise
     store.dispatch(getAirtableData(result))
-    parent.postMessage({ pluginMessage: { type: 'airtable', message: store.getState().airtableData[0] } }, '*')
+    parent.postMessage({ pluginMessage: { type: 'airtable', message: store.getState().airtableData[0], tableName: this.state.tableName  } }, '*')
   }
 
   airtableApiChange(event) {
