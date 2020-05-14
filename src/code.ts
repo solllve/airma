@@ -17,7 +17,7 @@ figma.ui.onmessage = msg => {
   if (msg.type === 'airtable') {
 
     //create new figma Page
-    figma.createPage().name = 'Airtable Data'
+    figma.createPage().name = msg.tableName
 
     //Navigate to airtable data page
     figma.currentPage = figma.root.children.slice(-1).pop() as PageNode
@@ -29,10 +29,12 @@ figma.ui.onmessage = msg => {
 
     arrayOfTableResults.push(airtableObject.records)
 
+    //console.log(airtableObject.records)
+
     let numberOfFields = Object.keys(arrayOfTableResults[0][0]['fields']).length
 
       arrayOfTableResults.map(tableRow => {
-
+          console.log(tableRow)
           //give me loop of rows
           for(var i = 0; i < tableRow.length; ++i){
 
@@ -45,17 +47,21 @@ figma.ui.onmessage = msg => {
             for(var l = 0; l < numberOfFields; ++l){
 
               let textNode = figma.createText()
-              const frameWidth = 150 * Number(numberOfFields)
-              const frameHeight = 70
+              const frameWidth = 200 * Number(numberOfFields)
+              const frameHeight = 80
+
+              //Come back to figure out responsive width with padding
               frame.resizeWithoutConstraints(frameWidth, frameHeight)
+
               frame.appendChild(textNode)
-              frame.y = i * 150
+              frame.y = i * 100
               textNode.y = 30
-              textNode.x = l * 150
+              textNode.x = l * 200
               textNode.resize(150, 30)
 
               if(arrayOfKeys[l] == 'image') {
-                textNode.characters = 'Image support coming soon'
+                //Come back to add actual image inside Circle shape
+                textNode.characters = JSON.stringify(tableRow[i].fields.image[0].url)
               }
               else {
                 textNode.characters = arrayOfValues[l].toString()
