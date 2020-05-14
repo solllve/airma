@@ -78,22 +78,18 @@ class SignInModal extends Component<MyProps, MyState> {
   constructor(props: MyProps) {
     super(props);
     this.state = {
-      airtableApi: 'keyxu9imGgjUCsm5p',
-      baseId: 'appsN1xTPJYU0WIZC',
-      tableName: '',
+      airtableApi: store.getState().airApi,
+      baseId: store.getState().baseId,
+      tableName: store.getState().tableName,
       isLoaded: false,
     };
-    this.airtableApiChange = this.airtableApiChange.bind(this);
-    this.baseIdChange = this.baseIdChange.bind(this);
-    this.tableNameChange = this.tableNameChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async connectToAirtableApi() {
     let promise = new Promise((resolve, reject) => {
-      let apiKeyLocal = this.state.airtableApi
-      let baseIdLocal = this.state.baseId
-      let tableNameLocal = this.state.tableName
+      let apiKeyLocal = store.getState().airApi
+      let baseIdLocal = store.getState().baseId
+      let tableNameLocal = store.getState().tableName
       var options = {
         'method': 'GET',
         'url': 'https://api.airtable.com/v0/'+ baseIdLocal +'/'+ tableNameLocal +'?api_key='+ apiKeyLocal,
@@ -122,55 +118,30 @@ class SignInModal extends Component<MyProps, MyState> {
     parent.postMessage({ pluginMessage: { type: 'airtable', message: store.getState().airtableData[0], tableName: this.state.tableName  } }, '*')
   }
 
-  airtableApiChange(event) {
-    store.dispatch(getAirtableApi(event.target.value))
-    this.setState(
-      {
-        airtableApi: event.target.value
-      }
-    );
-
-  }
-
-  baseIdChange(event) {
-    this.setState(
-      {
-        baseId: event.target.value
-      }
-    );
-  }
-  tableNameChange(event) {
-    this.setState(
-      {
-        tableName: event.target.value
-      }
-    );
-  }
-
   handleSubmit(event) {
     event.preventDefault();
   }
 
   apiIsValid() {
-    if(this.state.airtableApi != '') {
+    if(store.getState().airApi != '') {
       return true
     }
   }
 
   baseIdIsValid() {
-    if(this.state.baseId != '') {
+    if(store.getState().baseId != '') {
       return true
     }
   }
 
   tableNameIsValid() {
-    if(this.state.tableName != '') {
+    if(store.getState().tableName != '') {
       return true
     }
   }
 
   apiFieldValidator() {
-    if(this.state.airtableApi == '') {
+    if(store.getState().airApi == '') {
       return '🤦'
     }
     else {
@@ -179,7 +150,7 @@ class SignInModal extends Component<MyProps, MyState> {
   }
 
   baseIdFieldValidator() {
-    if(this.state.baseId == '') {
+    if(store.getState().baseId == '') {
       return '🤦'
     }
     else {
@@ -188,12 +159,27 @@ class SignInModal extends Component<MyProps, MyState> {
   }
 
   tableNameFieldValidator() {
-    if(this.state.tableName == '') {
+    if(store.getState().tableName == '') {
       return '🤦'
     }
     else {
       return '👍'
     }
+  }
+
+  apiKeyValue(event) {
+    console.log(event.target.value)
+    store.dispatch(getAirtableApi(event.target.value))
+  }
+
+  baseIdValue(event) {
+    console.log(event.target.value)
+    store.dispatch(getAirtableBaseId(event.target.value))
+  }
+
+  tableNameValue(event) {
+    console.log(event.target.value)
+    store.dispatch(getAirtableTableName(event.target.value))
   }
 
 
@@ -206,15 +192,15 @@ class SignInModal extends Component<MyProps, MyState> {
           <form onSubmit={this.handleSubmit}>
             <div className="input__field-container">
               <span className="--error-validation">{this.apiFieldValidator()}</span>
-              <input className={"input__field --password__field" + (this.apiIsValid() ? '' : ' --invalid')} type="password" value={this.state.airtableApi} onChange={this.airtableApiChange} placeholder="API Key"  />
+              <input className={"input__field --password__field" + (this.apiIsValid() ? '' : ' --invalid')} type="password" onChange={this.apiKeyValue} placeholder="API Key"  />
             </div>
             <div className="input__field-container">
               <span className="--error-validation">{this.baseIdFieldValidator()}</span>
-              <input className={"input__field" + (this.baseIdIsValid() ? '' : ' --invalid')} type="text" value={this.state.baseId} onChange={this.baseIdChange} placeholder="Base ID"  />
+              <input className={"input__field" + (this.baseIdIsValid() ? '' : ' --invalid')} type="text" onChange={this.baseIdValue} placeholder="Base ID"  />
             </div>
             <div className="input__field-container">
               <span className="--error-validation">{this.tableNameFieldValidator()}</span>
-              <input className={"input__field" + (this.tableNameIsValid() ? '' : ' --invalid')} type="text" value={this.state.tableName} onChange={this.tableNameChange} placeholder="Table Name"  />
+              <input className={"input__field" + (this.tableNameIsValid() ? '' : ' --invalid')} type="text" onChange={this.tableNameValue} placeholder="Table Name"  />
             </div>
             <SubmitButton />
           </form>
