@@ -23,57 +23,6 @@ type MyState = {
   isLoaded: boolean
 };
 
-class SubmitButton extends Component<MyProps, MyState> {
-  constructor(props: MyProps) {
-    super(props);
-    this.state = {
-      airtableApi: '',
-      baseId: '',
-      tableName: '',
-      isLoaded: false,
-    };
-  }
-  componentDidMount() {
-    fetch('https://api.airtable.com/v0/'+ store.getState().baseId +'/'+ store.getState().tableName +'?api_key=' + store.getState().airApi)
-      .then(res => res)
-      .then(
-        (result) => {
-          console.log(result.status)
-          if (result.status == 200) {
-              this.setState({
-               isLoaded: true
-             });
-           }
-        },
-
-        (error) => {
-          console.log(error)
-          this.setState({
-           isLoaded: false
-         });
-        }
-      )
-  }
-  closePluginWindow() {
-    parent.postMessage({ pluginMessage: { type: 'close-plugin' } }, '*')
-  }
-  render() {
-    const {isLoaded } = this.state;
-    console.log(isLoaded)
-    if(isLoaded == true) {
-      return (
-        <input onClick={this.closePluginWindow} className={"input__submit"} type="submit" value="Connect to Airtable"  />
-      )
-    }
-    else if(isLoaded == false) {
-      return (
-        <input className={"input__submit --invalid"} type="submit" value="Connect to Airtable"  />
-      )
-    }
-  }
-
-}
-
 class SignInModal extends Component<MyProps, MyState> {
   constructor(props: MyProps) {
     super(props);
@@ -118,8 +67,8 @@ class SignInModal extends Component<MyProps, MyState> {
 
     })
     let result = await promise
-    store.dispatch(getAirtableData(result))
-    parent.postMessage({ pluginMessage: { type: 'airtable', message: store.getState().airtableData[0], tableName: this.state.tableName  } }, '*')
+    //store.dispatch(getAirtableData(result))
+    parent.postMessage({ pluginMessage: { type: 'airtable', message: result, tableName: this.state.tableName  } }, '*')
   }
 
   airtableApiChange(event) {
