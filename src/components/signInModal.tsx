@@ -27,9 +27,9 @@ class SignInModal extends Component<MyProps, MyState> {
   constructor(props: MyProps) {
     super(props);
     this.state = {
-      airtableApi: '',
-      baseId: '',
-      tableName: '',
+      airtableApi: 'keyxu9imGgjUCsm5p',
+      baseId: 'app6bbrLs91M2fDKj',
+      tableName: 'Companies',
       isLoaded: false,
     };
     this.airtableApiChange = this.airtableApiChange.bind(this);
@@ -57,7 +57,6 @@ class SignInModal extends Component<MyProps, MyState> {
           if (response.status == 200) {
             resolve(response.text())
             console.log('successful connection to api')
-
           }
         }, function(error) {
           //error.message

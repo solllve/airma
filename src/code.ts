@@ -40,6 +40,7 @@ figma.ui.onmessage = msg => {
 
             let arrayOfValues = Object.values(tableRow[i].fields)
             let arrayOfKeys = Object.keys(tableRow[i].fields)
+            let arrayOfJson = Object.values(tableRow[i])
 
             const frame = figma.createFrame()
 
@@ -59,13 +60,19 @@ figma.ui.onmessage = msg => {
               textNode.x = l * 200
               textNode.resize(150, 30)
 
-              if(arrayOfKeys[l] == 'image') {
+
+              if(arrayOfKeys[l] == 'attachment') {
                 //Come back to add actual image inside Circle shape
                 textNode.characters = JSON.stringify(tableRow[i].fields.image[0].url)
               }
-              else {
-                textNode.characters = arrayOfValues[l].toString()
+              if(arrayOfKeys[l] == 'url') {
+                //Come back to add actual image inside Circle shape
+                textNode.characters = JSON.stringify(tableRow[i].fields.url[0].url)
               }
+              else {
+                textNode.characters = JSON.stringify(arrayOfValues[l])
+              }
+
 
             }
 
