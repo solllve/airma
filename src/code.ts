@@ -49,7 +49,7 @@ figma.ui.onmessage = msg => {
 
               let textNode = figma.createText()
               const frameWidth = 200 * Number(numberOfFields)
-              const frameHeight = 80
+              const frameHeight = 100
 
               //Come back to figure out responsive width with padding
               frame.resizeWithoutConstraints(frameWidth, frameHeight)
@@ -70,7 +70,7 @@ figma.ui.onmessage = msg => {
                 textNode.characters = JSON.stringify(tableRow[i].fields.url[0].url)
               }
               else {
-                textNode.characters = JSON.stringify(arrayOfValues[l])
+                textNode.characters = arrayOfValues[l].toString()
               }
 
 
@@ -82,14 +82,6 @@ figma.ui.onmessage = msg => {
   }
       //loop values of results
 //      for(var i = 0; i < airtableNumberOfResults; ++i){
-
-        //if string
-//        if(arrayOfValues[i] !== undefined) {
-//          console.log(arrayOfValues[i])
-          //let textNode = figma.createText()
-          //textNode.characters = arrayOfValues[i].toString()
-          //textNode
-//        }
 
         //if image
 //        if(arrayOfValues[i][0].filename !== undefined) {
