@@ -57,6 +57,7 @@ class SignInModal extends Component<MyProps, MyState> {
           if (response.status == 200) {
             resolve(response.text())
             console.log('successful connection to api')
+            alert(tableNameLocal + ' table data loaded successfully!')
           }
         }, function(error) {
           //error.message
