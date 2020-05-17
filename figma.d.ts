@@ -12,6 +12,8 @@ interface PluginAPI {
   readonly viewport: ViewportAPI
   closePlugin(message?: string): void
 
+  notify(message: string, options?: NotificationOptions): NotificationHandler
+
   showUI(html: string, options?: ShowUIOptions): void
   readonly ui: UIAPI
 

@@ -14,6 +14,12 @@ figma.ui.onmessage = msg => {
   if (msg.type === 'close-plugin') {
     figma.closePlugin()
   }
+  if (msg.type === 'successful-message') {
+    figma.notify('✌️ Data has been successfully loaded!')
+  }
+  if (msg.type === 'fail-message') {
+    figma.notify('😅 Please double check your API credentials at airtable.com/api')
+  }
   if (msg.type === 'airtable') {
 
     //create new figma Page
