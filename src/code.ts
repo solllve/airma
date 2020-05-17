@@ -18,7 +18,7 @@ figma.ui.onmessage = msg => {
     figma.notify('✌️ Data has been successfully loaded!')
   }
   if (msg.type === 'fail-message') {
-    figma.notify('😅 Please double check your API credentials at airtable.com/api')
+    figma.notify('😅 Please double check your API credentials at airtable.com/api', {timeout: 800})
   }
   if (msg.type === 'airtable') {
 

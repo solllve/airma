@@ -60,7 +60,7 @@ class SignInModal extends Component<MyProps, MyState> {
             //alert(tableNameLocal + ' table data loaded successfully!')
             parent.postMessage({ pluginMessage: { type: 'successful-message' } }, '*')
           }
-          else {
+          else if(response.status == 404) {
             parent.postMessage({ pluginMessage: { type: 'fail-message' } }, '*')
           }
         }, function(error) {

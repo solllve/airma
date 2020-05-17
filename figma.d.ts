@@ -71,6 +71,10 @@ type ShowUIOptions = {
   height?: number,
 }
 
+type NotificationOptions = {
+  timeout?: number,
+}
+
 type UIPostMessageOptions = {
   targetOrigin?: string,
 }
